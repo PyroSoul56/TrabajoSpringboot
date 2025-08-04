@@ -1,5 +1,32 @@
 package com.example.TrabajoSpringBoot.models;
 
+import com.example.TrabajoSpringBoot.controllers.FileTypeEnum;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity()
+@Table(name="media")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class Media {
-    //TODO: Implement the Media class
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
+
+    @ManyToOne
+    private RevengePlan revengePlan;
+
+    @Column(nullable = false)
+    private FileTypeEnum type;
+
+    @Column(nullable = false)
+    private String url;
+
+    private String caption;
+
 }
