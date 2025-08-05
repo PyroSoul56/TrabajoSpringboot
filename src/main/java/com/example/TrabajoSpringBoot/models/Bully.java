@@ -31,7 +31,8 @@ public class Bully {
     @Enumerated(EnumType.STRING)
     private HighSchoolRolesEnum highSchoolRole;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "clique_id", nullable = false)
     private Clique clique;
 
     private String bullyingReason;

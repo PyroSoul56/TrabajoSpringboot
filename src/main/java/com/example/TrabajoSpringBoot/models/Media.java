@@ -18,7 +18,8 @@ public class Media {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "revenge_plan_id", nullable = false)
     private RevengePlan revengePlan;
 
     @Column(nullable = false)

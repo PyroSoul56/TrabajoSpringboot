@@ -27,14 +27,17 @@ public class RevengePlan {
 
     private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "bully_id", nullable = false)
     private Bully bully;
 
     @Column(nullable = false)
     private LocalDate datePlanned;
 
+    @Column(nullable = false)
     private boolean isExecuted;
 
+    @Enumerated
     private SuccessLevelEnum successLevel;
 
     @OneToMany(mappedBy = "revengePlan", cascade = CascadeType.ALL, orphanRemoval = true)
