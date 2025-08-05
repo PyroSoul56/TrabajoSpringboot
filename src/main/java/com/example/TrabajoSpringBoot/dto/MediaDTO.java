@@ -8,11 +8,11 @@ import jakarta.validation.constraints.Size;
 public class MediaDTO {
 
 
-    @NotBlank
+    @NotBlank(message = "Name cannot be blank")
     @Enumerated
     private FileTypeEnum type;
 
-    @NotBlank
+    @NotBlank(message = "URL cannot be blank")
     private String url;
 
     @Size(min = 0, max = 100)

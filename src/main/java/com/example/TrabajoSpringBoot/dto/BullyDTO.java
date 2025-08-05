@@ -9,11 +9,11 @@ import jakarta.validation.constraints.Size;
 
 public class BullyDTO {
 
-    @NotBlank
+    @NotBlank(message = "Name cannot be blank")
     @Size(min = 0, max = 25)
     private String name;
 
-    @NotBlank
+    @NotBlank(message = "Nickname cannot be blank")
     @Size(min = 0, max = 25)
     private String nickname;
 
