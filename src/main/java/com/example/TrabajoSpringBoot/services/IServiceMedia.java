@@ -9,8 +9,8 @@ import java.util.Optional;
 
 public interface IServiceMedia {
     public List<MediaDTO> getMedia();
-    public Media addMedia(MediaDTO m);
-    public Optional<Media> removeMedia(int id);
-    public Optional<Media> getMediaById(int id);
-    public RevengePlan getRevengePlanByMediaId(int id);
+    public Media addMedia(MediaDTO m, String revengePlanId);
+    public Optional<Media> removeMedia(String id);
+    public Optional<Media> getMediaById(String id);
+    public RevengePlan getRevengePlanByMediaId(String id);
 }

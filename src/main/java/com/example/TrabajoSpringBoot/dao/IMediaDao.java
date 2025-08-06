@@ -1,4 +1,12 @@
 package com.example.TrabajoSpringBoot.dao;
 
-public interface IMediaDao {
+import com.example.TrabajoSpringBoot.models.Media;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+import java.util.Optional;
+
+public interface IMediaDao extends JpaRepository<Media, String> {
+    List<Media> findByRevengePlanId(String id);
+    Optional<Media> findByUrl(String url);
 }

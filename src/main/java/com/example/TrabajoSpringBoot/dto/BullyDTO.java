@@ -7,24 +7,24 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public class BullyDTO {
+public record BullyDTO (
 
     @NotBlank(message = "Name cannot be blank")
     @Size(min = 0, max = 25)
-    private String name;
+    String name,
 
     @NotBlank(message = "Nickname cannot be blank")
     @Size(min = 0, max = 25)
-    private String nickname;
+    String nickname,
 
     @Enumerated
-    private HighSchoolRolesEnum type;
+    HighSchoolRolesEnum highSchoolRole,
 
     @Size(min = 0, max = 100)
-    private String bullyingReason;
+    String bullyingReason,
 
     @Min(0)
     @Max(10)
-    private int levelOfAnnoyance;
+    int levelOfAnnoyance
 
-}
+){}

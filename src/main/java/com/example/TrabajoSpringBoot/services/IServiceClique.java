@@ -10,8 +10,8 @@ import java.util.Optional;
 public interface IServiceClique {
     public List<CliqueDTO> getCliques();
     public Clique addClique(CliqueDTO c);
-    public Optional<Clique> removeClique(int id);
-    public Optional<Clique> getCliqueById(int id);
+    public Optional<Clique> removeClique(String id);
+    public Optional<Clique> getCliqueById(String id);
     public Optional<Clique> getCliqueByName(String name);
-    public List<Bully> getBulliesByCliqueId(int id);
+    public List<Bully> getBulliesByCliqueId(String id);
 }

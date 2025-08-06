@@ -11,9 +11,9 @@ import java.util.Optional;
 public interface IServiceBully {
     public List<BullyDTO> getBullies();
     public Bully addBully(BullyDTO b);
-    public Optional <Bully> removeBully(int id);
-    public Optional<Bully> getBullyById(int id);
+    public Optional <Bully> removeBully(String id);
+    public Optional<Bully> getBullyById(String id);
     public Optional<Bully> getBullyByName(String name);
-    public Optional<Clique> getCliqueByBullyId(int id);
-    public List<RevengePlan> getRevengePlansByBullyId();
+    public Optional<Clique> getCliqueByBullyId(String id);
+    public List<RevengePlan> getRevengePlansByBullyId(String id);
 }

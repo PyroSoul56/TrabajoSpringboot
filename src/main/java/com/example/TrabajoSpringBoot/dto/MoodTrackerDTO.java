@@ -4,15 +4,21 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.CreationTimestamp;
 
-public class MoodTrackerDTO {
+import java.time.LocalDate;
+
+public record MoodTrackerDTO (
 
     @NotBlank
     @Max(10)
     @Min(0)
-    private int moodLevel;
+    int moodLevel,
 
     @Size(min = 0, max = 100)
-    private String note;
+    String note,
 
-}
+    @CreationTimestamp
+    LocalDate date
+
+){}

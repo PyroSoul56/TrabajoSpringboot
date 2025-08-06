@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface IServiceMoodTracker {
     public List<MoodTrackerDTO> getMoodTrackers();
     public MoodTracker addMoodTracker(MoodTrackerDTO m);
-    public Optional<MoodTracker> removeMoodTracker(int id);
-    public Optional<MoodTracker> getMoodTrackerById(int id);
+    public Optional<MoodTracker> removeMoodTracker(String id);
+    public Optional<MoodTracker> getMoodTrackerById(String id);
+    public List<MoodTracker> getMoodTrackerByMoodLevel(int moodLevel);
 }
