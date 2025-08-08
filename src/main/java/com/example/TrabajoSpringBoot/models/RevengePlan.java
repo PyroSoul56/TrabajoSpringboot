@@ -35,7 +35,7 @@ public class RevengePlan {
     private LocalDate datePlanned;
 
     @Column(nullable = false)
-    private boolean isExecuted;
+    private boolean execution;
 
     @Enumerated
     private SuccessLevelEnum successLevel;
@@ -44,3 +44,4 @@ public class RevengePlan {
     private Set<Media> relatedMedia;
 
 }
+

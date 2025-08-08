@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface IServiceBully {
     public List<BullyDTO> getBullies();
-    public Bully addBully(BullyDTO b);
+    public void addBully(BullyDTO b);
     public Optional <Bully> removeBully(String id);
     public Optional<Bully> getBullyById(String id);
     public Optional<Bully> getBullyByName(String name);

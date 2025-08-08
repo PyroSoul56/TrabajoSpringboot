@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface IRevengePlanDao extends JpaRepository<RevengePlan, String> {
     List<RevengePlan> findRevengePlansByBullyId(String id);
     Optional<RevengePlan> findRevengePlanByTitle(String name);
-    List<RevengePlan> findRevengePlansByExecuted(boolean executed);
+    List<RevengePlan> findRevengePlanByExecutionIs(boolean execution);
 
 }

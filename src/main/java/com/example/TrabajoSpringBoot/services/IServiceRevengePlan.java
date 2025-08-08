@@ -13,6 +13,6 @@ public interface IServiceRevengePlan {
     public Optional<RevengePlan> removeRevengePlan(String id);
     public Optional<RevengePlan> getRevengePlanById(String id);
     public Optional<RevengePlan> getRevengePlanByTitle(String name);
-    public List<RevengePlan> getExecutedRevengePlansByExecution(boolean executed);
+    public List<RevengePlan> findRevengePlanByExecutionIs(boolean executed);
     public List<Media> getMediaByRevengePlanId(String id);
 }

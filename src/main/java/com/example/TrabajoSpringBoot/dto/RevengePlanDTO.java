@@ -21,7 +21,7 @@ public record RevengePlanDTO (
     LocalDate datePlanned,
 
     @NotNull(message = "This field cannot be blank")
-    Boolean isExecuted,
+    Boolean execution,
 
     @Enumerated
     String successLevel

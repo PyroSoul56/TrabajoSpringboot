@@ -38,7 +38,7 @@ public class ServiceBully implements IServiceBully {
     }
 
     @Override
-    public Bully addBully(BullyDTO b) {
+    public void addBully(BullyDTO b) {
         Bully bully = new Bully();
         bully.setName(b.name());
         bully.setNickname(b.nickname());
@@ -47,7 +47,7 @@ public class ServiceBully implements IServiceBully {
         if (search != null) {
             throw new NameException("This bully already exists");
         }
-        return bullyDao.save(bully);
+        bullyDao.save(bully);
     }
 
     @Override

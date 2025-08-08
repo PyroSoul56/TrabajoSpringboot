@@ -29,7 +29,7 @@ public class ServiceRevengePlan implements IServiceRevengePlan{
                 revengePlan.getTitle(),
                 revengePlan.getDescription(),
                 revengePlan.getDatePlanned(),
-                revengePlan.isExecuted(),
+                revengePlan.isExecution(),
                 revengePlan.getSuccessLevel().name()
             )
         ).toList(
@@ -42,7 +42,7 @@ public class ServiceRevengePlan implements IServiceRevengePlan{
          revengePlan.setTitle(r.title());
          revengePlan.setDescription(r.description());
          revengePlan.setDatePlanned(r.datePlanned());
-         revengePlan.setExecuted(r.isExecuted());
+         revengePlan.setExecution(r.execution());
          revengePlan.setSuccessLevel(SuccessLevelEnum.valueOf(r.successLevel()));
         RevengePlan search = revengePlanDao.findById(revengePlan.getId()).orElse(null);
         if (search != null) {
@@ -70,8 +70,8 @@ public class ServiceRevengePlan implements IServiceRevengePlan{
     }
 
     @Override
-    public List<RevengePlan> getExecutedRevengePlansByExecution(boolean executed) {
-        return revengePlanDao.findRevengePlansByExecuted(executed);
+    public List<RevengePlan> findRevengePlanByExecutionIs(boolean execution) {
+        return revengePlanDao.findRevengePlanByExecutionIs(execution);
     }
 
     @Override
