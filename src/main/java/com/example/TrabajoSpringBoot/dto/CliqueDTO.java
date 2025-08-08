@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Size;
 
 public record CliqueDTO (
 
+        String id,
+
     @NotNull(message = "Name cannot be blank")
     @Size(min = 1, max = 25)
     String name,

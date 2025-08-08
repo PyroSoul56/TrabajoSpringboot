@@ -27,11 +27,12 @@ public class ServiceBully implements IServiceBully {
         return bullyDao.findAll().stream().map(
             bully -> {
                 return new BullyDTO(
-                    bully.getName(),
-                    bully.getNickname(),
-                    bully.getHighSchoolRole(),
-                    bully.getBullyingReason(),
-                    bully.getLevelOfAnnoyance()
+                        bully.getId(),
+                        bully.getName(),
+                        bully.getNickname(),
+                        bully.getHighSchoolRole(),
+                        bully.getBullyingReason(),
+                        bully.getLevelOfAnnoyance()
                 );
             }
         ).toList();

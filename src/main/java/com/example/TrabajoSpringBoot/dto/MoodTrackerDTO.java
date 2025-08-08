@@ -10,6 +10,8 @@ import java.time.LocalDate;
 
 public record MoodTrackerDTO (
 
+        String id,
+
     @NotBlank
     @Max(10)
     @Min(0)

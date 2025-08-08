@@ -32,7 +32,7 @@ public class Bully {
     private HighSchoolRolesEnum highSchoolRole;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "clique_id", nullable = false)
+    @JoinColumn(name = "clique_id")
     private Clique clique;
 
     private String bullyingReason;

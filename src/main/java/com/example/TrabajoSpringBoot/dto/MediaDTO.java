@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 
 public record MediaDTO (
 
+        String id,
 
     @NotBlank(message = "Name cannot be blank")
     @Enumerated

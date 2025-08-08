@@ -10,6 +10,8 @@ import java.time.LocalDate;
 
 public record RevengePlanDTO (
 
+        String id,
+
     @NotNull(message = "Title cannot be blank")
     @Size(min = 1, max = 25)
     String title,

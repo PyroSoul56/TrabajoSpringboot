@@ -17,12 +17,16 @@ public class BullyController {
     @Autowired
     private IServiceBully serviceBully;
 
-    @GetMapping("/")
+    @GetMapping("")
+    @ResponseBody
+    @ResponseStatus(org.springframework.http.HttpStatus.OK)
     public ResponseEntity<List<BullyDTO>> getBullies() {
         return ResponseEntity.ok(serviceBully.getBullies());
     }
 
-    @PostMapping("/")
+    @PostMapping("")
+    @ResponseBody
+    @ResponseStatus(org.springframework.http.HttpStatus.CREATED)
     public ResponseEntity<?> addBully(@RequestBody @Valid BullyDTO bullyDTO) {
         System.out.println(bullyDTO);
         serviceBully.addBully(bullyDTO);
@@ -34,12 +38,6 @@ public class BullyController {
         return serviceBully.removeBully(id)
                 .map(bully -> ResponseEntity.ok().body(bully))
                 .orElse(ResponseEntity.notFound().build());
-    }
-
-    @GetMapping("/")
-    public ResponseEntity<List<BullyDTO>> getAllBullies() {
-        List<BullyDTO> bullies = serviceBully.getBullies();
-        return ResponseEntity.ok(bullies);
     }
 
     @GetMapping("/id/{id}")

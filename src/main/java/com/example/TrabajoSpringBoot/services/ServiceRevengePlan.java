@@ -26,6 +26,7 @@ public class ServiceRevengePlan implements IServiceRevengePlan{
     public List<RevengePlanDTO> getRevengePlan() {
         return revengePlanDao.findAll().stream().map(
             revengePlan -> new RevengePlanDTO(
+                revengePlan.getId(),
                 revengePlan.getTitle(),
                 revengePlan.getDescription(),
                 revengePlan.getDatePlanned(),

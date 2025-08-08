@@ -23,6 +23,7 @@ public class ServiceClique implements IServiceClique{
     public List<CliqueDTO> getCliques() {
         return cliqueDao.findAll().stream().map(
             clique -> new CliqueDTO(
+                clique.getId(),
                 clique.getName(),
                 clique.getDescription()
             )

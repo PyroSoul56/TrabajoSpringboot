@@ -23,6 +23,7 @@ public class ServiceMedia implements IServiceMedia{
     public List<MediaDTO> getMedia() {
         return mediaDao.findAll().stream().map(
             media -> new MediaDTO(
+                media.getId(),
                 media.getType(),
                 media.getUrl(),
                 media.getCaption()

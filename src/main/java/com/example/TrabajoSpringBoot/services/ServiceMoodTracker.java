@@ -19,6 +19,7 @@ public class ServiceMoodTracker implements  IServiceMoodTracker{
     public List<MoodTrackerDTO> getMoodTrackers() {
         return moodTrackerDao.findAll().stream().map(
             moodTracker -> new MoodTrackerDTO(
+                moodTracker.getId(),
                 moodTracker.getMoodLevel(),
                 moodTracker.getNote(),
                 moodTracker.getDate()
