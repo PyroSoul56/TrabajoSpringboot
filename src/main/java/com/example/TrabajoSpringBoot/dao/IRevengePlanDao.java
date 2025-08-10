@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IRevengePlanDao extends JpaRepository<RevengePlan, String> {
-    List<RevengePlan> findRevengePlansByBullyId(String id);
+    List<RevengePlan> findRevengePlansByBullyName(String bullyName);
     Optional<RevengePlan> findRevengePlanByTitle(String name);
     List<RevengePlan> findRevengePlanByExecutionIs(boolean execution);
 

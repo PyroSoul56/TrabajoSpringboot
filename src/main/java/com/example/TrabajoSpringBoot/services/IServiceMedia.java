@@ -1,16 +1,15 @@
 package com.example.TrabajoSpringBoot.services;
 
 import com.example.TrabajoSpringBoot.dto.MediaDTO;
-import com.example.TrabajoSpringBoot.models.Media;
-import com.example.TrabajoSpringBoot.models.RevengePlan;
+import com.example.TrabajoSpringBoot.dto.RevengePlanDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IServiceMedia {
     public List<MediaDTO> getMedia();
-    public Media addMedia(MediaDTO m, String revengePlanId);
-    public Optional<Media> removeMedia(String id);
-    public Optional<Media> getMediaById(String id);
-    public RevengePlan getRevengePlanByMediaId(String id);
+    public List<MediaDTO> addMedia(List<MediaDTO> mediaDTOs);
+    public Optional<MediaDTO> removeMedia(String id);
+    public Optional<MediaDTO> getMediaById(String id);
+    public Optional<RevengePlanDTO> getRevengePlanByMediaId(String id);
 }

@@ -1,7 +1,6 @@
 package com.example.TrabajoSpringBoot.controllers;
 
 import com.example.TrabajoSpringBoot.dto.BullyDTO;
-import com.example.TrabajoSpringBoot.models.RevengePlan;
 import com.example.TrabajoSpringBoot.services.IServiceBully;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +26,9 @@ public class BullyController {
     @PostMapping("")
     @ResponseBody
     @ResponseStatus(org.springframework.http.HttpStatus.CREATED)
-    public ResponseEntity<?> addBully(@RequestBody @Valid BullyDTO bullyDTO) {
-        System.out.println(bullyDTO);
-        serviceBully.addBully(bullyDTO);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<List<BullyDTO>> addBullies(@RequestBody @Valid List<BullyDTO> bullies) {
+        List<BullyDTO> addedBullies = serviceBully.addBullies(bullies);
+        return ResponseEntity.ok(addedBullies);
     }
 
     @DeleteMapping("/{id}")
@@ -40,30 +38,23 @@ public class BullyController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/id/{id}")
-    public ResponseEntity<?> getBulliesById(@PathVariable String id) {
-        return serviceBully.getBullyById(id)
-                .map(bully -> ResponseEntity.ok().body(bully))
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @GetMapping("/name/{name}")
+    @GetMapping("/{name}")
     public ResponseEntity<?> getBullyByName(@PathVariable String name) {
         return serviceBully.getBullyByName(name)
                 .map(bully -> ResponseEntity.ok().body(bully))
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/{id}/clique")
-    public ResponseEntity<?> getCliqueByBullyId(@PathVariable String id) {
-        return serviceBully.getCliqueByBullyId(id)
+    @GetMapping("/{name}/clique")
+    public ResponseEntity<?> getCliqueByBullyName(@PathVariable String name) {
+        return serviceBully.getCliqueByBullyName(name)
                 .map(clique -> ResponseEntity.ok().body(clique))
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/{id}/revenge-plans")
-    public ResponseEntity<?> getRevengePlansByBullyId(@PathVariable String id) {
-        List<RevengePlan> revengePlans = serviceBully.getRevengePlansByBullyId(id);
+    @GetMapping("/{name}/revenge-plan")
+    public ResponseEntity<?> getRevengePlansByBullyName(@PathVariable String name) {
+        var revengePlans = serviceBully.getRevengePlansByBullyName(name);
         if (revengePlans.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

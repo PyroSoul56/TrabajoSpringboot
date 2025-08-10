@@ -11,5 +11,6 @@ public interface IBullyDao  extends JpaRepository <Bully, String> {
 
     Optional<Bully> findByName(String name);
     Optional<Bully> findByNickname(String nickname);
-    List<Bully> findByCliqueId(String id);
+
+    List<Bully> findByCliqueName(String cliqueName);
 }

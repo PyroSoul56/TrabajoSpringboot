@@ -24,8 +24,8 @@ public class MoodTrackerController {
 
     @PostMapping("")
     public ResponseEntity<?> addMoodTracker(@RequestBody @Valid MoodTrackerDTO moodTrackerDTO) {
-        MoodTracker moodTracker = serviceMoodTracker.addMoodTracker(moodTrackerDTO);
-        return ResponseEntity.ok(moodTracker);
+        var moodTracker = serviceMoodTracker.addMoodTracker(moodTrackerDTO);
+        return moodTracker.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     @DeleteMapping("/{id}")
@@ -43,8 +43,8 @@ public class MoodTrackerController {
     }
 
     @GetMapping("/mood-level/{moodLevel}")
-    public ResponseEntity<List<MoodTracker>> getMoodTrackerByMoodLevel(@PathVariable int moodLevel) {
-        List<MoodTracker> moodTrackers = serviceMoodTracker.getMoodTrackerByMoodLevel(moodLevel);
+    public ResponseEntity<?> getMoodTrackerByMoodLevel(@PathVariable int moodLevel) {
+        var moodTrackers = serviceMoodTracker.getMoodTrackerByMoodLevel(moodLevel);
         if (moodTrackers.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

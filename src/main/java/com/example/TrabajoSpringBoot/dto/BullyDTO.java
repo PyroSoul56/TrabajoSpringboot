@@ -27,7 +27,8 @@ public record BullyDTO (
 
     @Min(0)
     @Max(10)
-    int levelOfAnnoyance
+    int levelOfAnnoyance,
 
+    String cliqueName
 
 ){}

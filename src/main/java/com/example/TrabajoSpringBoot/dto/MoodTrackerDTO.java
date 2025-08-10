@@ -2,7 +2,6 @@ package com.example.TrabajoSpringBoot.dto;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -12,7 +11,6 @@ public record MoodTrackerDTO (
 
         String id,
 
-    @NotBlank
     @Max(10)
     @Min(0)
     int moodLevel,

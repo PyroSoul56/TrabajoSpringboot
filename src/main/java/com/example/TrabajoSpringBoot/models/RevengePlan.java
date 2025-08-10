@@ -1,6 +1,8 @@
 package com.example.TrabajoSpringBoot.models;
 
 import com.example.TrabajoSpringBoot.controllers.SuccessLevelEnum;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,6 +43,7 @@ public class RevengePlan {
     private SuccessLevelEnum successLevel;
 
     @OneToMany(mappedBy = "revengePlan", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private Set<Media> relatedMedia;
 
 }

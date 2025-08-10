@@ -24,8 +24,8 @@ public class RevengePlanController {
     }
 
     @PostMapping("")
-    public ResponseEntity<?> addRevengePlan(@RequestBody @Valid RevengePlanDTO revengePlanDTO) {
-        RevengePlan revengePlan = serviceRevengePlan.addRevengePlan(revengePlanDTO);
+    public ResponseEntity<?> addRevengePlans(@RequestBody @Valid List<RevengePlanDTO> revengePlans) {
+        List<RevengePlanDTO> revengePlan = serviceRevengePlan.addRevengePlans(revengePlans);
         return ResponseEntity.ok(revengePlan);
     }
 
@@ -36,14 +36,7 @@ public class RevengePlanController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/id/{id}")
-    public ResponseEntity<?> getRevengePlanById(@PathVariable String id) {
-        return serviceRevengePlan.getRevengePlanById(id)
-                .map(plan -> ResponseEntity.ok().body(plan))
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @GetMapping("/title/{title}")
+    @GetMapping("/{title}")
     public ResponseEntity<?> getRevengePlanByTitle(@PathVariable String title) {
         return serviceRevengePlan.getRevengePlanByTitle(title)
                 .map(plan -> ResponseEntity.ok().body(plan))
@@ -51,17 +44,17 @@ public class RevengePlanController {
     }
 
     @GetMapping("/executed/{executed}")
-    public ResponseEntity<List<RevengePlan>> findRevengePlanByExecutionIs(@PathVariable boolean executed) {
-        List<RevengePlan> plans = serviceRevengePlan.findRevengePlanByExecutionIs(executed);
+    public ResponseEntity<?> findRevengePlanByExecutionIs(@PathVariable boolean executed) {
+        var plans = serviceRevengePlan.findRevengePlanByExecutionIs(executed);
         if (plans.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(plans);
     }
 
-    @GetMapping("/{id}/media")
-    public ResponseEntity<?> getMediaByRevengePlanId(@PathVariable String id) {
-        List<Media> media = serviceRevengePlan.getMediaByRevengePlanId(id);
+    @GetMapping("/{title}/media")
+    public ResponseEntity<?> getMediaByRevengePlanTitle(@PathVariable String title) {
+        var media = serviceRevengePlan.getMediaByRevengePlanTitle(title);
         if (media.isEmpty()) {
             return ResponseEntity.notFound().build();
         }

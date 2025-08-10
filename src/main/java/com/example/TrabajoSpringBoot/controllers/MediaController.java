@@ -24,10 +24,9 @@ public class MediaController {
     }
 
     @PostMapping("")
-    public ResponseEntity<?> addMedia(@RequestBody @Valid MediaDTO mediaDTO,
-                                      @RequestParam String revengePlanId) {
-        Media media = serviceMedia.addMedia(mediaDTO, revengePlanId);
-        return ResponseEntity.ok(media);
+    public ResponseEntity<?> addMedia(@RequestBody @Valid List<MediaDTO> mediaDTOs) {
+        var medias = serviceMedia.addMedia(mediaDTOs);
+        return medias.isEmpty() ? ResponseEntity.badRequest().build() : ResponseEntity.ok(medias);
     }
 
     @DeleteMapping("/{id}")
@@ -37,7 +36,7 @@ public class MediaController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getMediaById(@PathVariable String id) {
         return serviceMedia.getMediaById(id)
                 .map(media -> ResponseEntity.ok().body(media))
@@ -46,10 +45,7 @@ public class MediaController {
 
     @GetMapping("/{id}/revenge-plan")
     public ResponseEntity<?> getRevengePlanByMediaId(@PathVariable String id) {
-        RevengePlan revengePlan = serviceMedia.getRevengePlanByMediaId(id);
-        if (revengePlan == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(revengePlan);
+        var revengePlan = serviceMedia.getRevengePlanByMediaId(id);
+        return revengePlan.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

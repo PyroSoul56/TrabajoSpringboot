@@ -26,7 +26,7 @@ public record RevengePlanDTO (
     Boolean execution,
 
     @Enumerated
-    String successLevel
+    String successLevel,
 
+    String bullyName
 ){}
-

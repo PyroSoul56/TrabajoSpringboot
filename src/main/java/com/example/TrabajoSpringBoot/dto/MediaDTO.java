@@ -9,15 +9,15 @@ public record MediaDTO (
 
         String id,
 
-    @NotBlank(message = "Name cannot be blank")
     @Enumerated
+    @jakarta.validation.constraints.NotNull(message = "Type cannot be null")
     FileTypeEnum type,
 
     @NotBlank(message = "URL cannot be blank")
     String url,
 
     @Size(min = 0, max = 100)
-    String caption
+    String caption,
 
-
+    String revengePlanTitle
 ){}

@@ -1,9 +1,12 @@
 package com.example.TrabajoSpringBoot.models;
 
 import com.example.TrabajoSpringBoot.controllers.HighSchoolRolesEnum;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.Set;
@@ -14,10 +17,11 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Bully {
     //TODO: Implement the Bully class
 
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;

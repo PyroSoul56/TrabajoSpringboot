@@ -1,5 +1,6 @@
 package com.example.TrabajoSpringBoot.services;
 
+import com.example.TrabajoSpringBoot.Exceptions.NameException;
 import com.example.TrabajoSpringBoot.dao.IMoodTrackerDao;
 import com.example.TrabajoSpringBoot.dto.MoodTrackerDTO;
 import com.example.TrabajoSpringBoot.models.MoodTracker;
@@ -28,33 +29,63 @@ public class ServiceMoodTracker implements  IServiceMoodTracker{
     }
 
     @Override
-    public MoodTracker addMoodTracker(MoodTrackerDTO m) {
+    public Optional<MoodTrackerDTO> addMoodTracker(MoodTrackerDTO m) {
         MoodTracker moodTracker = new MoodTracker();
+        if (m.id() != null && !m.id().isEmpty()) {
+            MoodTracker search = moodTrackerDao.findById(m.id()).orElse(null);
+            if (search != null) {
+                throw new NameException("This mood tracker already exists");
+            }
+            moodTracker.setId(m.id());
+        }
+        if (m.date() == null) {
+            moodTracker.setDate(java.time.LocalDate.now());
+        } else {
+            moodTracker.setDate(m.date());
+        }
         moodTracker.setMoodLevel(m.moodLevel());
         moodTracker.setNote(m.note());
-        moodTracker.setDate(m.date());
-        MoodTracker search = moodTrackerDao.findById(moodTracker.getId()).orElse(null);
-        if (search != null) {
-            throw new IllegalArgumentException("This mood tracker already exists");
-        }
-        return moodTrackerDao.save(moodTracker);
+        MoodTracker saved = moodTrackerDao.save(moodTracker);
+        return Optional.of(new MoodTrackerDTO(
+            saved.getId(),
+            saved.getMoodLevel(),
+            saved.getNote(),
+            saved.getDate()
+        ));
     }
 
     @Override
-    public Optional<MoodTracker> removeMoodTracker(String id) {
-        return moodTrackerDao.findById(id).map(moodTracker -> {;
+    public Optional<MoodTrackerDTO> removeMoodTracker(String id) {
+        return moodTrackerDao.findById(id).map(moodTracker -> {
             moodTrackerDao.delete(moodTracker);
-            return moodTracker;
+            return new MoodTrackerDTO(
+                moodTracker.getId(),
+                moodTracker.getMoodLevel(),
+                moodTracker.getNote(),
+                moodTracker.getDate()
+            );
         });
     }
 
     @Override
-    public Optional<MoodTracker> getMoodTrackerById(String id) {
-        return moodTrackerDao.findById(id);
+    public Optional<MoodTrackerDTO> getMoodTrackerById(String id) {
+        return moodTrackerDao.findById(id).map(moodTracker -> new MoodTrackerDTO(
+            moodTracker.getId(),
+            moodTracker.getMoodLevel(),
+            moodTracker.getNote(),
+            moodTracker.getDate()
+        ));
     }
 
     @Override
-    public List<MoodTracker> getMoodTrackerByMoodLevel(int moodLevel) {
-        return moodTrackerDao.findByMoodLevel(moodLevel);
+    public List<MoodTrackerDTO> getMoodTrackerByMoodLevel(int moodLevel) {
+        return moodTrackerDao.findByMoodLevel(moodLevel).stream().map(
+            moodTracker -> new MoodTrackerDTO(
+                moodTracker.getId(),
+                moodTracker.getMoodLevel(),
+                moodTracker.getNote(),
+                moodTracker.getDate()
+            )
+        ).toList();
     }
 }

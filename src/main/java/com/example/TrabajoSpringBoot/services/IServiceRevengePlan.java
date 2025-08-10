@@ -1,5 +1,6 @@
 package com.example.TrabajoSpringBoot.services;
 
+import com.example.TrabajoSpringBoot.dto.MediaDTO;
 import com.example.TrabajoSpringBoot.dto.RevengePlanDTO;
 import com.example.TrabajoSpringBoot.models.Media;
 import com.example.TrabajoSpringBoot.models.RevengePlan;
@@ -9,10 +10,10 @@ import java.util.Optional;
 
 public interface IServiceRevengePlan {
     public List<RevengePlanDTO> getRevengePlan();
-    public RevengePlan addRevengePlan(RevengePlanDTO r);
-    public Optional<RevengePlan> removeRevengePlan(String id);
-    public Optional<RevengePlan> getRevengePlanById(String id);
-    public Optional<RevengePlan> getRevengePlanByTitle(String name);
-    public List<RevengePlan> findRevengePlanByExecutionIs(boolean executed);
-    public List<Media> getMediaByRevengePlanId(String id);
+    public List<RevengePlanDTO> addRevengePlans(List<RevengePlanDTO> revengePlans);
+    public Optional<RevengePlanDTO> removeRevengePlan(String id);
+    public Optional<RevengePlanDTO> getRevengePlanById(String id);
+    public Optional<RevengePlanDTO> getRevengePlanByTitle(String name);
+    public List<RevengePlanDTO> findRevengePlanByExecutionIs(boolean executed);
+    public List<MediaDTO> getMediaByRevengePlanTitle(String title);
 }

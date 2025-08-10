@@ -7,6 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IMediaDao extends JpaRepository<Media, String> {
-    List<Media> findByRevengePlanId(String id);
+    List<Media> findByRevengePlanTitle(String revengePlanTitle);
     Optional<Media> findByUrl(String url);
 }
